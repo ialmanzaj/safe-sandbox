@@ -61,6 +61,15 @@ export const ERC20Tokens = [
     logoURI:
       'https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912',
   },
+  {
+    name: 'USDC',
+    token_address: '0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97',
+    symbol: 'USDC',
+    decimals: 6,
+    chainId: 80001,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/6319/standard/usdc.png?1696506694',
+  },
 ]
 
 export const AnyERC20Token = {
