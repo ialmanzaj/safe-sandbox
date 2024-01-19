@@ -9,8 +9,9 @@ import { SendFlow } from "../features/SendFlow";
 import { SideActions } from "@/src/ui-kit/SideActions";
 import { notReachable } from "@/src/utils/notReachable";
 import { Layout, ReceiveIcon, SendIcon, SwapIcon } from "@/src/ui-kit";
+import { LendFlow } from "../features/SendFlow/LendFlow";
 
-type Tab = "send" | "receive";
+type Tab = "lend" | "send" | "receive";
 
 type Props = {
   active: Tab;
@@ -20,7 +21,7 @@ type Props = {
 export const ActionsTabs = ({ active, onClose }: Props) => {
   const [activeTab, setActiveTab] = useState<Tab>(active);
   const [transactionSubmitted, setTransactionSubmitted] = useState(false);
-  const tabs: Tab[] = ["send", "receive"];
+  const tabs: Tab[] = ["lend", "send", "receive"];
 
   return (
     <Layout>
@@ -55,6 +56,13 @@ export const ActionsTabs = ({ active, onClose }: Props) => {
 
       {(() => {
         switch (activeTab) {
+          case "lend":
+            return (
+              <LendFlow
+                onClose={onClose}
+                onTransactionSubmitted={() => setTransactionSubmitted(true)}
+              />
+            );
           case "send":
             return (
               <SendFlow
@@ -74,6 +82,7 @@ export const ActionsTabs = ({ active, onClose }: Props) => {
 
 const TabIcon = ({ tab, color }: { tab: Tab; color: string }) => {
   switch (tab) {
+    case "lend":
     case "send":
       return <SendIcon size={12} color={color} />;
     case "receive":

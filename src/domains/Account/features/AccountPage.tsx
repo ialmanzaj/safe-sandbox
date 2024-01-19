@@ -14,7 +14,7 @@ import { useGetAccountActivity } from "../../UserOperation/api/getAddressActivit
 import { PlaygroundBanner } from "../components/PlaygroundBanner";
 
 type sideViewState = {
-  type: "closed" | "send" | "receive";
+  type: "closed" | "send" | "receive" | "lend";
 };
 
 export function AccountPage() {
@@ -31,6 +31,8 @@ export function AccountPage() {
       case "send":
       case "receive":
         return "Send, Swap & Receive";
+      case "lend":
+        return "Lend"
       default:
         return "";
     }
@@ -43,6 +45,7 @@ export function AccountPage() {
           <AccountBalance />
           <div className="self-end gap-2">
             <AccountActions
+              onLendClick={() => setSideViewState({ type: "lend" })}
               onSendClick={() => setSideViewState({ type: "send" })}
               onReceiveClick={() => setSideViewState({ type: "receive" })}
             />
@@ -75,6 +78,7 @@ export function AccountPage() {
       >
         {(() => {
           switch (sideViewState.type) {
+            case "lend":
             case "send":
             case "receive":
               return (
