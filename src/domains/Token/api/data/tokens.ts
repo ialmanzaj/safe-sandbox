@@ -25,6 +25,15 @@ export const nativeCoins = [
 ]
 
 export const ERC20Tokens = [
+  {
+    name: 'USDC',
+    token_address: '0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8',
+    symbol: 'USDC',
+    decimals: 6,
+    chainId: 11155111,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/6319/standard/usdc.png?1696506694',
+  },
 ]
 
 export const AnyERC20Token = {
