@@ -11,13 +11,13 @@ export const allTokens = [
       'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
   },
   {
-    name: 'Wrapped Ether',
-    token_address: '0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa',
-    symbol: 'WETH',
+    name: 'ETH',
+    token_address: 'ETH',
+    symbol: 'ETH',
     decimals: 18,
-    chainId: 80001,
+    chainId: 11155111,
     logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      'https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628',
   },
   {
     name: 'Wrapped Matic',
@@ -40,18 +40,18 @@ export const nativeCoins = [
     logoURI:
       'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
   },
+  {
+    name: 'ETH',
+    token_address: 'ETH',
+    symbol: 'ETH',
+    decimals: 18,
+    chainId: 11155111,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628',
+  },
 ]
 
 export const ERC20Tokens = [
-  {
-    name: 'Wrapped Ether',
-    token_address: '0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa',
-    symbol: 'WETH',
-    decimals: 18,
-    chainId: 80001,
-    logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
-  },
   {
     name: 'Wrapped Matic',
     token_address: '0x9c3c9283d3e44854697cd22d3faa240cfb032889',
