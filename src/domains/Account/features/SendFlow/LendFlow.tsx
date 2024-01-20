@@ -82,7 +82,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
         name: `Lend ${amount.toFixed(4)} ${token.symbol}`,
         actions: [
           {
-            target: address as Address,
+            target: "0x387d311e47e80b498169e6fb51d3193167d89F7D" as Address,
             value: BigInt(amount * 10 ** Number(token.decimals)),
             callData: calldata,
           },
