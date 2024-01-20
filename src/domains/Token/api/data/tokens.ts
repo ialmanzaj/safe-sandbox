@@ -10,6 +10,15 @@ export const allTokens = [
     logoURI:
       'https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628',
   },
+  {
+    name: 'GHO',
+    token_address: 'GHO',
+    symbol: 'GHO',
+    decimals: 18,
+    chainId: 11155111,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/30663/standard/ghoaave.jpeg?1696529533',
+  },
 ]
 
 export const nativeCoins = [
@@ -33,6 +42,15 @@ export const ERC20Tokens = [
     chainId: 11155111,
     logoURI:
       'https://assets.coingecko.com/coins/images/6319/standard/usdc.png?1696506694',
+  },
+  {
+    name: 'GHO',
+    token_address: '0xc4bf5cbdabe595361438f8c6a187bdc330539c60',
+    symbol: 'GHO',
+    decimals: 18,
+    chainId: 11155111,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/30663/standard/ghoaave.jpeg?1696529533',
   },
 ]
 

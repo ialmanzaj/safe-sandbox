@@ -4,12 +4,13 @@ import { SendView } from "./views";
 import { UserOperation } from "permissionless";
 import { formatAddress } from "@/src/utils/common";
 import { notReachable } from "@/src/utils/notReachable";
-import { Address, encodeFunctionData, parseAbi } from "viem";
+import { Address, encodeAbiParameters, encodeFunctionData, parseAbi } from "viem";
 import { useActiveNetwork } from "@/src/domains/Network/hooks";
 import { useCreateUserOp } from "@/src/domains/UserOperation/hooks";
 import { ERC20Token } from "@/src/domains/Token/ERC20Token/ERC20Token";
 import { UserOpStatusView } from "@/src/domains/UserOperation/components";
 import { getFormattedAmount } from "@/src/domains/Token/ERC20Token/helpers";
+import { useActiveAccount } from "../../hooks";
 
 type ViewState =
   | { type: "send_view" }
@@ -31,6 +32,7 @@ export const SendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
   });
   const [activeNetwork] = useActiveNetwork();
   const createUserOp = useCreateUserOp();
+  const [sender] = useActiveAccount()
 
   const onSendClick = async ({
     token,
@@ -54,14 +56,37 @@ export const SendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
           BigInt(amount * 10 ** Number(token.decimals)),
         ],
       });
+      const prependedCalldata = encodeAbiParameters(
+        [
+          {
+            name: "token",
+            type: "address",
+          },
+          {
+            name: "calldata",
+            type: "bytes",
+          },
+        ],
+        [token.token_address as Address, calldata]
+      )
+      const flashloanCalldata = encodeFunctionData({
+        functionName: "flashLoan",
+        abi: [{"type":"function","name":"flashFee","inputs":[{"name":"token","type":"address","internalType":"address"},{"name":"amount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"flashLoan","inputs":[{"name":"receiver","type":"address","internalType":"contract IERC3156FlashBorrower"},{"name":"token","type":"address","internalType":"address"},{"name":"amount","type":"uint256","internalType":"uint256"},{"name":"data","type":"bytes","internalType":"bytes"}],"outputs":[{"name":"","type":"bool","internalType":"bool"}],"stateMutability":"nonpayable"},{"type":"function","name":"maxFlashLoan","inputs":[{"name":"token","type":"address","internalType":"address"}],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"}],
+        args: [
+          sender.address as Address,
+          token.token_address as Address,
+          BigInt(amount * 10 ** Number(token.decimals)),
+          prependedCalldata
+        ],
+      })
 
       userOp = await createUserOp.mutateAsync({
         name: `Send ${amount.toFixed(2)} ${token.symbol}`,
         actions: [
           {
-            target: token.token_address as Address,
+            target: "0xB5d0ef1548D9C70d3E7a96cA67A2d7EbC5b1173E" as Address,
             value: BigInt(0),
-            callData: calldata,
+            callData: flashloanCalldata,
           },
         ],
       });

@@ -9,6 +9,7 @@ import { NetworkSwitcher } from "../../../../Network/components";
 import { ERC20Token } from "../../../../Token/ERC20Token/ERC20Token";
 import { useGetUserTokens } from "@/src/domains/Token/ERC20Token/hooks";
 import { InputTokenAmount } from "../../../../Token/components/InputTokenAmount";
+import { useActiveAccount } from "../../../hooks";
 
 type Props = {
   isUserOpCreated: boolean;
@@ -17,6 +18,7 @@ type Props = {
     address,
     amount,
   }: {
+    sender: string;
     token: ERC20Token;
     address: string;
     amount: number;

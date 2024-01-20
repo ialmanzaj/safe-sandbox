@@ -1,12 +1,12 @@
 import { contracts } from "@/src/constants/contracts";
 import { Account } from "../../Account";
 import { InitialModule } from "../Module";
+import { ContractDependencies } from '@/src/constants/contracts'
 
-export const getInstallFlashLoanLenderData = (
-  activeAccount: Account
+export const getInstallFlashLoanFallbackExecutorData = (
 ): InitialModule => {
   return {
-    module: contracts.FLASHLOAN_LENDER_ADDRESS,
+    module: contracts.FLASHCALL_FALLBACK_EXECUTOR,
     data: "0x",
   };
 };
