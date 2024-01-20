@@ -10,6 +10,7 @@ import { ERC20Token } from "@/src/domains/Token/ERC20Token/ERC20Token";
 import { UserOpStatusView } from "@/src/domains/UserOperation/components";
 import { getFormattedAmount } from "@/src/domains/Token/ERC20Token/helpers";
 import { LendView } from "./views/LendView";
+import { useActiveAccount } from "../../hooks";
 
 type ViewState =
   | { type: "lend_view" }
@@ -30,41 +31,20 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
     type: "lend_view",
   });
   const [activeNetwork] = useActiveNetwork();
+  const [activeAccount] = useActiveAccount();
   const createUserOp = useCreateUserOp();
 
   const onSendClick = async ({
     token,
-    address,
     amount,
   }: {
     token: ERC20Token;
-    address: string;
     amount: number;
   }) => {
     let userOp;
 
     if (token.symbol !== activeNetwork.nativeCurrency.symbol) {
-      const calldata = encodeFunctionData({
-        functionName: "transfer",
-        abi: parseAbi([
-          "function transfer(address to, uint256 amount) public returns (bool)",
-        ]),
-        args: [
-          address as Address,
-          BigInt(amount * 10 ** Number(token.decimals)),
-        ],
-      });
-
-      userOp = await createUserOp.mutateAsync({
-        name: `Lend ${amount.toFixed(2)} ${token.symbol}`,
-        actions: [
-          {
-            target: token.token_address as Address,
-            value: BigInt(0),
-            callData: calldata,
-          },
-        ],
-      });
+      // not implemented
     } else {
       const calldata = encodeFunctionData({
         functionName: "depositETH",
@@ -73,7 +53,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
         ]),
         args: [
           "0x6ae43d3271ff6888e7fc43fd7321a503ff738951" as Address,
-          address as Address,
+          activeAccount.address as Address,
           0,
         ],
       });
@@ -95,7 +75,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
     setViewState({
       type: "submitted_view",
       lendAmount: getFormattedAmount({ token, amount, activeNetwork }),
-      recipient: address,
+      recipient: activeAccount.address,
       userOp,
     });
   };

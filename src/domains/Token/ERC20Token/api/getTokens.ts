@@ -28,13 +28,13 @@ export async function getTokens({
       functionName: "balanceOf",
       args: [account.address],
     })) as bigint;
-    if (data && data > BigInt(0)) {
+    //if (data) {
       const _token: ERC20Token = {
         ...token,
         balance: String(Number(data) / 10 ** token.decimals),
       };
       tokens.push(_token);
-    }
+    //}
   }
   return tokens;
 }

@@ -14,11 +14,9 @@ type Props = {
   isUserOpCreated: boolean;
   onSendClick: ({
     token,
-    address,
     amount,
   }: {
     token: ERC20Token;
-    address: string;
     amount: number;
   }) => void;
 };
@@ -26,16 +24,12 @@ type Props = {
 export const LendView = ({ isUserOpCreated, onSendClick }: Props) => {
   const userTokens = useGetUserTokens({ withNativeCoin: true }) as ERC20Token[];
   const [token, setToken] = useState<ERC20Token>(userTokens[0]);
-  const [address, setAddress] = useState<string | undefined>();
   const [amount, setAmount] = useState<string | undefined>();
 
   const isSendEnabled =
-    address && isAddress(address) && amount && Number(amount) > 0;
+    amount && Number(amount) > 0;
 
   const getButtonText = () => {
-    if (!address || !isAddress(address)) {
-      return "Some fields are empty";
-    }
     if (!amount) {
       return "Enter amount";
     }
@@ -59,12 +53,6 @@ export const LendView = ({ isUserOpCreated, onSendClick }: Props) => {
             onAmountChange={setAmount}
             tokensList={userTokens}
           />
-          <InputText
-            value={address}
-            title="On behalf of"
-            placeHolder="Normally your address"
-            onChange={setAddress}
-          />
         </div>
       </Layout.Content>
       <Layout.Footer>
@@ -75,7 +63,7 @@ export const LendView = ({ isUserOpCreated, onSendClick }: Props) => {
           disabled={!isSendEnabled || isUserOpCreated}
           onClick={() =>
             isSendEnabled &&
-            onSendClick({ token, address, amount: parseFloat(amount) })
+            onSendClick({ token, amount: parseFloat(amount) })
           }
         >
           {getButtonText()}
