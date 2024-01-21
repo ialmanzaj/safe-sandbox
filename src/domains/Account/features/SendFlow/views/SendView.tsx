@@ -18,7 +18,6 @@ type Props = {
     address,
     amount,
   }: {
-    sender: string;
     token: ERC20Token;
     address: string;
     amount: number;
