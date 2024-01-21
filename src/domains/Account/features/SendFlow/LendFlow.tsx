@@ -44,9 +44,9 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
   }) => {
     let userOp;
 
-    if (token.symbol !== activeNetwork.nativeCurrency.symbol) {
-      // not implemented
-    } else {
+    // if (token.symbol !== activeNetwork.nativeCurrency.symbol) {
+    //   // not implemented
+    // } else {
       const calldata = encodeFunctionData({
         functionName: "depositETH",
         abi: parseAbi([
@@ -69,7 +69,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
           },
         ],
       });
-    }
+    // }
 
     onTransactionSubmitted();
 
