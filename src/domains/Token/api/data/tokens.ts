@@ -12,12 +12,21 @@ export const allTokens = [
   },
   {
     name: 'GHO',
-    token_address: 'GHO',
+    token_address: '0xc4bf5cbdabe595361438f8c6a187bdc330539c60',
     symbol: 'GHO',
     decimals: 18,
     chainId: 11155111,
     logoURI:
       'https://assets.coingecko.com/coins/images/30663/standard/ghoaave.jpeg?1696529533',
+  },
+  {
+    name: 'WETH',
+    token_address: '0xc558dbdd856501fcd9aaf1e62eae57a9f0629a3c',
+    symbol: 'WETH',
+    decimals: 18,
+    chainId: 11155111,
+    logoURI:
+      'https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628',
   },
 ]
 

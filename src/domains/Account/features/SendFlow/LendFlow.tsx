@@ -11,6 +11,7 @@ import { UserOpStatusView } from "@/src/domains/UserOperation/components";
 import { getFormattedAmount } from "@/src/domains/Token/ERC20Token/helpers";
 import { LendView } from "./views/LendView";
 import { useActiveAccount } from "../../hooks";
+import { contracts } from "@/src/constants/contracts";
 
 type ViewState =
   | { type: "lend_view" }
@@ -52,7 +53,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
           "function depositETH(address, address onBehalfOf, uint16 referralCode) external payable",
         ]),
         args: [
-          "0x6ae43d3271ff6888e7fc43fd7321a503ff738951" as Address,
+          contracts.AAVE_POOL as Address,
           activeAccount.address as Address,
           0,
         ],
@@ -62,7 +63,7 @@ export const LendFlow = ({ onTransactionSubmitted, onClose }: Props) => {
         name: `Lend ${amount.toFixed(4)} ${token.symbol}`,
         actions: [
           {
-            target: "0x387d311e47e80b498169e6fb51d3193167d89F7D" as Address,
+            target: contracts.AAVE_WRAPPED_TOKEN_GATEWAY as Address,
             value: BigInt(amount * 10 ** Number(token.decimals)),
             callData: calldata,
           },
