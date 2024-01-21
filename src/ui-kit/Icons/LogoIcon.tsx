@@ -10,9 +10,9 @@ export const LogoIcon = () => {
 
     <rect x="5" y="20" width="130" height="60" rx="10" ry="10" fill="black" clip-path="url(#clip-strip)"/>
 
-    <text x="150" y="40" font-family="Arial" font-size="24" fill="black">Credit</text>
+    <text x="150" y="40" font-family="Arial" font-size="24" fill="black">DeCredit</text>
 
-    <text x="150" y="70" font-family="Arial" font-size="24" fill="black">DeWallet</text>
+    <text x="150" y="70" font-family="Arial" font-size="24" fill="black">Wallet</text>
 </svg>
 
 
