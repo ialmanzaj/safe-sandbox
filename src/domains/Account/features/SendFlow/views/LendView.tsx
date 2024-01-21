@@ -21,8 +21,18 @@ type Props = {
   }) => void;
 };
 
+const withoutGho = (tokens: ERC20Token[]) => {
+  let result: ERC20Token[] = [];
+  for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i].symbol !== "GHO") {
+      result.push(tokens[i]);
+    }
+  }
+  return result;
+};
+
 export const LendView = ({ isUserOpCreated, onSendClick }: Props) => {
-  const userTokens = useGetUserTokens({ withNativeCoin: true }) as ERC20Token[];
+  const userTokens = withoutGho(useGetUserTokens({ withNativeCoin: true }) as ERC20Token[]);
   const [token, setToken] = useState<ERC20Token>(userTokens[0]);
   const [amount, setAmount] = useState<string | undefined>();
 
