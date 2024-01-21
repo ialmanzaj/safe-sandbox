@@ -1,6 +1,7 @@
 import { ERC20Token } from '../ERC20Token/ERC20Token'
 import {
   AssetsIcon,
+  GhoIcon,
   PolygonIcon,
   USDCIcon,
   USDTIcon,
@@ -25,6 +26,8 @@ export const TokenIcon = ({ token, size }: Props) => {
       return <WMaticIcon size={size} />
     case 'MATIC':
       return <PolygonIcon size={size} />
+    case 'GHO':
+      return <GhoIcon size={size} />
     default:
       return <AssetsIcon size={size} isActive={false} />
   }
