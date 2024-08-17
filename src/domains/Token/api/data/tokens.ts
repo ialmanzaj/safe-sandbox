@@ -1,74 +1,56 @@
-import { zeroAddress } from 'viem'
+import { zeroAddress } from "viem";
 
 export const allTokens = [
   {
-    name: 'MATIC',
-    token_address: 'MATIC',
-    symbol: 'MATIC',
+    name: "ETH",
+    token_address: "ETH",
+    symbol: "ETH",
     decimals: 18,
-    chainId: 80001,
+    chainId: 11155111,
     logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      "https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628",
   },
   {
-    name: 'Wrapped Ether',
-    token_address: '0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa',
-    symbol: 'WETH',
+    name: "WETH",
+    token_address: "0xc558dbdd856501fcd9aaf1e62eae57a9f0629a3c",
+    symbol: "WETH",
     decimals: 18,
-    chainId: 80001,
+    chainId: 11155111,
     logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      "https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628",
   },
-  {
-    name: 'Wrapped Matic',
-    token_address: '0x9c3c9283d3e44854697cd22d3faa240cfb032889',
-    symbol: 'WMATIC',
-    decimals: 18,
-    chainId: 80001,
-    logoURI:
-      'https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912',
-  },
-]
+];
 
 export const nativeCoins = [
   {
-    name: 'MATIC',
-    token_address: 'MATIC',
-    symbol: 'MATIC',
+    name: "ETH",
+    token_address: "ETH",
+    symbol: "ETH",
     decimals: 18,
-    chainId: 80001,
+    chainId: 11155111,
     logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      "https://assets.coingecko.com/coins/images/279/standard/ethereum.png?1696501628",
   },
-]
+];
 
 export const ERC20Tokens = [
   {
-    name: 'Wrapped Ether',
-    token_address: '0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa',
-    symbol: 'WETH',
-    decimals: 18,
-    chainId: 80001,
+    name: "USDC",
+    token_address: "0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8",
+    symbol: "USDC",
+    decimals: 6,
+    chainId: 11155111,
     logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      "https://assets.coingecko.com/coins/images/6319/standard/usdc.png?1696506694",
   },
-  {
-    name: 'Wrapped Matic',
-    token_address: '0x9c3c9283d3e44854697cd22d3faa240cfb032889',
-    symbol: 'WMATIC',
-    decimals: 18,
-    chainId: 80001,
-    logoURI:
-      'https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912',
-  },
-]
+];
 
 export const AnyERC20Token = {
-  name: 'Any ERC20 Token',
+  name: "Any ERC20 Token",
   token_address: zeroAddress,
-  symbol: 'Any ERC20 Token',
+  symbol: "Any ERC20 Token",
   decimals: 18,
   chainId: 80001,
   logoURI:
-    'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
-}
+    "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+};

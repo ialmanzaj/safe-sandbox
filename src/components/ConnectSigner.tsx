@@ -35,7 +35,7 @@ export const ConnectSigner = ({
 
   useEffect(() => {
     if (isConnected && open) {
-      console.log("here");
+      console.log("here-------", isConnected, open, address);
       localStorage.setItem(`signer`, address as string);
       setSigner(address as string);
       onSignerChanged(address as string);

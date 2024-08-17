@@ -5,6 +5,9 @@ import { getPublicClient } from "../../Network/helpers";
 import Bootstrap from "@/src/constants/abis/Bootstrap.json";
 import AccountFactory from "@/src/constants/abis/AccountFactory.json";
 import { EmptyInitialModule, InitialModule } from "../../Module/Module";
+import { getInstallFlashLoanFallbackExecutorData } from "../../Module/api/executors";
+import { getInstallExtensibleFallbackHandlerData } from "../../Module/api/fallback";
+import { FallbackParam } from "../../Module/utils";
 import {
   getInstallECDSAData,
   getInstallWebauthnData,
@@ -43,11 +46,19 @@ export const createAccount = async ({
     walletSigner,
     webauthnCredential
   );
+
+  const initialExecutors = getInitialExecutors();
+  const initialHook = EmptyInitialModule;
+  const initialFallback = getInitialFallback(contracts.FLASHCALL_FALLBACK_EXECUTOR);
+
   return await getAccount({
     network,
     salt: saltNonce,
     contractDependencies: contracts,
     initialValidators,
+    initialExecutors,
+    initialHook,
+    initialFallback
   });
 };
 
@@ -72,6 +83,22 @@ function getInitialValidators(
     initialValidators.push(webauthnInstallData);
   }
   return initialValidators;
+}
+
+function getInitialExecutors() {
+  const initialExecutors: InitialModule[] = [];
+  initialExecutors.push(getInstallFlashLoanFallbackExecutorData());
+  return initialExecutors
+}
+
+function getInitialFallback(handler: Address) {
+  const params: FallbackParam[] = [];
+  params.push({
+    selector: "0x23e30c8b", // IERC3156FlashBorrower.onFlashLoan.selector
+    fallbackType: BigInt(1), // ExtensibleFallbackHandler.FallBackType.Dynamic
+    handler: handler
+  });
+  return getInstallExtensibleFallbackHandlerData(params);
 }
 
 function getInitializationData(

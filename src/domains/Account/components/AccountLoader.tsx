@@ -56,7 +56,8 @@ export const AccountLoader = ({ children }: PropsWithChildren) => {
     isTransactionInProgress,
     activeAccount.address,
   ]);
-
+  console.log("activeAccount.address", activeAccount.address);
+  console.log("activeNetwork", activeNetwork);
   if (!activeAccount.address || !activeNetwork) {
     return <Spinner />;
   }

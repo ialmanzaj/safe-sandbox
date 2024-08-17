@@ -4,7 +4,6 @@ import { InitialModule } from "../Module";
 import { FallbackParam, encodeFallbackParams } from "../utils/fallback";
 
 export const getInstallExtensibleFallbackHandlerData = (
-  account: Account,
   fallbackParams: FallbackParam[]
 ): InitialModule => {
   return {

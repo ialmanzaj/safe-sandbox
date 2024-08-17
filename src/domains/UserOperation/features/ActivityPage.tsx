@@ -7,7 +7,7 @@ import { useGetAccountActivity } from "../api/getAddressActivity";
 
 export function ActivityPage() {
   const { data: groupedUserOps } = useGetAccountActivity();
-
+  console.log("groupedUserOps", groupedUserOps);
   if (!groupedUserOps) return <Spinner />;
 
   return Object.keys(groupedUserOps).length > 0 ? (

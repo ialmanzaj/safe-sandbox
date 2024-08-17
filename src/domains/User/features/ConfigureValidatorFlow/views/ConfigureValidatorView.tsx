@@ -41,6 +41,9 @@ export const ConfigureValidatorView = ({ isLoading, onSaveClick }: Props) => {
     setCredential(formattedCredential);
   };
 
+  console.log("signer", activeAccount.walletSigner);
+  console.log("webauthnKeyId", activeAccount.webauthnKeyId);
+
   return (
     <div className="flex flex-col items-center justify-center text-center relative">
       <div className="text-2xl font-medium mt-[100px]">
